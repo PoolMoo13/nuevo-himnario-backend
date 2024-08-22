@@ -4,8 +4,9 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import openApiConfiguration from "./docs/swagger";
 import dbConnect from "./config/mongo";
+import routes from "./routes"
+
 const app = express();
-import swaggerJsdoc from 'swagger-jsdoc';
 
 const ENGINE_DB = process.env.ENGINE_DB;
 const NODE_ENV = process.env.NODE_ENV || 'development';
@@ -20,7 +21,7 @@ app.use( '/documentation',
   swaggerUi.serve, 
   swaggerUi.setup(openApiConfiguration) );
 
-
+app.use("/api", routes)
 
 app.listen(port, () => {
   console.log(`Listo: http://localhost:${port}`);

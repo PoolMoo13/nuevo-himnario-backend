@@ -57,7 +57,7 @@ const swaggerDefinition: OAS3Definition = {
           },
         },
       },
-      track: {
+      himnos: {
         type: "object",
         required: ["name", "album", "cover", "artist", "duration", "mediaId"],
         properties: {
