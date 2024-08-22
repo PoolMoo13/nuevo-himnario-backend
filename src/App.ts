@@ -3,38 +3,32 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-const openApiConfigration = require("./docs/swagger");
-// const dbConnectNoSql = require("./config/mongo");
+import openApiConfiguration from "./docs/swagger";
+import dbConnect from "./config/mongo";
 const app = express();
+import swaggerJsdoc from 'swagger-jsdoc';
 
 const ENGINE_DB = process.env.ENGINE_DB;
-// const NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static("storage"));
 
-morganBody(app, {
-  noColors: true,
-  stream: loggerStream,
-  skip: function (req, res) {
-    return res.statusCode < 400;
-  },
-});
-
-// prueba en actions
-
 const port = process.env.PORT || 3000;
 
-app.use( '/documentation', swaggerUi.serve, swaggerUi.setup(openApiConfigration) );
+app.use( '/documentation',
+  swaggerUi.serve, 
+  swaggerUi.setup(openApiConfiguration) );
+
+
 
 app.listen(port, () => {
-  console.log("🚀 ~ app.listen ~ port:", port)
+  console.log(`Listo: http://localhost:${port}`);
+});
+dbConnect().then (() => {
+  console.log(`Conectado a la base de datos ${ENGINE_DB} en ${NODE_ENV}`);
+  
 });
 
-
-app.use("/api", require("./routes"));
-
-(ENGINE_DB === 'nosql') ? dbConnectNoSql() : dbConnectMySQL();
-
-module.exports = app;
+export default app;
