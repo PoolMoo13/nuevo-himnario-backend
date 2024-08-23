@@ -1,4 +1,4 @@
-export default interface Track {
+export default interface Hymnal {
     titulo: string;
     description: string;
     password: string;

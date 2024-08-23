@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import tracksModel from "../models/tracks"
+import tracksModel from "../models/hymnals";
 
 async function getItems(req: Request, res: Response): Promise<void> {
     try {

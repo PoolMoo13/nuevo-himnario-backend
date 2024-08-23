@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getItems } from "../controllers/tracks";
+import { getItems } from "../controllers/hymnals";
 
 /**
  * Get all tracks

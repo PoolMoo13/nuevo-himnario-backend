@@ -1,5 +1,5 @@
 import { Schema, Types, model, Model } from "mongoose";
-import TrackInterface from "../interfaces/track.interface"
+import TrackInterface from "../interfaces/hymnal.interface"
 import mongooseDelete from "mongoose-delete";
 
 interface TracksModelExt extends Model<TrackInterface> {
