@@ -25,11 +25,11 @@ const TracksScheme = new Schema<any>(
       contenido: {
         type: String,
       },
-      mediaId: {
+      id: {
         type: String,
       },
     },
-    mediaId: {
+    id: {
       type: String,
     },
   },
@@ -45,7 +45,7 @@ TracksScheme.static('findAllData', function findAllData() {
       {
         $lookup: {
           from: "storages", //TODO Tracks --> storages
-          localField: "mediaId", //TODO Tracks.mediaId
+          localField: "id", //TODO Tracks.id
           foreignField: "_id", //TODO Straoges._id
           as: "audio", //TODO Alias!
         },
@@ -67,7 +67,7 @@ const joinData = this.aggregate([
   {
     $lookup: {
       from: "storages", //TODO Tracks --> storages
-      localField: "mediaId", //TODO Tracks.mediaId
+      localField: "id", //TODO Tracks.id
       foreignField: "_id", //TODO Straoges._id
       as: "audio", //TODO Alias!
     },

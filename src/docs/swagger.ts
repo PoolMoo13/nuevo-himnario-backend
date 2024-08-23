@@ -59,7 +59,7 @@ const swaggerDefinition: OAS3Definition = {
       },
       himnos: {
         type: "object",
-        required: ["name", "album", "cover", "artist", "duration", "mediaId"],
+        required: ["name", "album", "cover", "artist", "duration", "id"],
         properties: {
           name: {
             type: "string",
@@ -95,7 +95,7 @@ const swaggerDefinition: OAS3Definition = {
               },
             },
           },
-          mediaId: {
+          id: {
             type: "string",
           },
         },
