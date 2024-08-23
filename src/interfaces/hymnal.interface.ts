@@ -3,6 +3,6 @@ export default interface Hymnal {
     title: string;
     description: string;
     password: string;
-    hymnns: { id: string; title: string; lyrics: string };
+    hymns: { id: string; title: string; lyrics: string };
     id: string;
   }

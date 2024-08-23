@@ -13,7 +13,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("storage"));
+app.use(express.static("hymnals"));
 
 const port = process.env.PORT || 3000;
 
