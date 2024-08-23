@@ -57,58 +57,33 @@ const swaggerDefinition: OAS3Definition = {
           },
         },
       },
-      himnos: {
+      hymnns: {
         type: "object",
-        required: ["name", "album", "cover", "artist", "duration", "id"],
+        required: ["id", "title", "lyrics"],
         properties: {
-          name: {
-            type: "string",
-          },
-          album: {
-            type: "string",
-          },
-          cover: {
-            type: "string",
-          },
-          artist: {
-            type: "object",
-            properties: {
-              name: {
-                type: "string",
-              },
-              nickname: {
-                type: "string",
-              },
-              nationality: {
-                type: "string",
-              },
-            },
-          },
-          duration: {
-            type: "object",
-            properties: {
-              start: {
-                type: "integer",
-              },
-              end: {
-                type: "integer",
-              },
-            },
-          },
           id: {
             type: "string",
           },
+          title: {
+            type: "string",
+          },
+          lyrics: {
+            type: "string",
+          },
+        },
+        id: {
+          type: "string",
         },
       },
-      storage: {
-        type: "object",
-        properties: {
-          url: {
-            type: "string",
-          },
-          filename: {
-            type: "string",
-          },
+    },
+    storage: {
+      type: "object",
+      properties: {
+        url: {
+          type: "string",
+        },
+        filename: {
+          type: "string",
         },
       },
     },

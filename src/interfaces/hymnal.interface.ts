@@ -1,7 +1,8 @@
 export default interface Hymnal {
-    titulo: string;
+    slug: string;
+    title: string;
     description: string;
     password: string;
-    himnos: { titulo: string; contenido: string; id: string };
+    hymnns: { id: string; title: string; lyrics: string };
     id: string;
   }

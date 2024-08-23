@@ -8,7 +8,10 @@ interface TracksModelExt extends Model<TrackInterface> {
 
 const TracksScheme = new Schema<any>(
   {
-    titulo: {
+    slug: {
+      type: String,
+    },
+    title: {
       type: String,
     },
     description: {
@@ -18,14 +21,14 @@ const TracksScheme = new Schema<any>(
         type: String,
         required: true
     },
-    himnos: {
-      titulo: {
-        type: String,
-      },
-      contenido: {
-        type: String,
-      },
+    hymnns: {
       id: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
+      lyrics: {
         type: String,
       },
     },
