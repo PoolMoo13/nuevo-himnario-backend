@@ -6,7 +6,7 @@ import { createItem, deleteItem, getItem, getItems, updateItem } from "../contro
 router.get("/", getItems);
 router.get("/:id", getItem);
 router.post("/", createItem);
-router.put("/:id", updateItem);
+router.patch("/:id", updateItem);
 router.delete("/:id", deleteItem);
 
 export {router};
