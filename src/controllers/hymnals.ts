@@ -26,7 +26,6 @@ async function getItem(req: Request, res: Response): Promise<void> {
 async function createItem(req: Request, res: Response): Promise<void> {
   try {
     const data = await tracksModel.create(req.body);
-    console.log("🚀 ~ file: hymnals.ts:31 ~ createItem ~ data:", data)
     res.status(201).send({ data });
   } catch (e) {
     handleHttpError(res, 'ERROR_CREATE_ITEM');

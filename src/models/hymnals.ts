@@ -44,5 +44,9 @@ const TracksScheme = new Schema<any>(
 );
 
 TracksScheme.plugin(mongooseDelete, { overrideMethods: "all" });
+TracksScheme.statics.findAllData = function() {
+  return this.find({});
+};
+
 const TrackModel = model<Hymnal, TracksModelExt>('hymns', TracksScheme);
 export default TrackModel;
