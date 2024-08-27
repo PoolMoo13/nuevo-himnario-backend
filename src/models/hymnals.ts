@@ -1,7 +1,6 @@
 import { Schema, Types, model, Model } from "mongoose";
 import Hymnal from "../interfaces/hymnal.interface";
 import mongooseDelete from "mongoose-delete";
-
 interface TracksModelExt extends Model<Hymnal> {
     findAllData(): any;
 }

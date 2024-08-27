@@ -15,12 +15,12 @@ async function getItems(req: Request, res: Response): Promise<void> {
 
 async function getItem(req: Request, res: Response): Promise<void> {
   try {
-    const { id } = req.params; // Extrae el id de los parámetros de la ruta
+    const { id } = req.params; 
 
-    const data = await tracksModel.findOne({ _id: id }); // Busca el documento con ese id
+    const data = await tracksModel.findOne({ _id: id }); 
 
     if (!data) {
-      res.status(404).send({ error: 'ITEM_NOT_FOUND' }); // Si no encuentra el documento, envía un error 404
+      res.status(404).send({ error: 'ITEM_NOT_FOUND' }); 
       return;
     }
 
@@ -30,7 +30,6 @@ async function getItem(req: Request, res: Response): Promise<void> {
     res.status(500).send({ error: 'ERROR_GET_ITEMS' });
   }
 }
-
 
 async function createItem(req: Request, res: Response): Promise<void> {
   try {
