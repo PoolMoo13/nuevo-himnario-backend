@@ -15,13 +15,22 @@ async function getItems(req: Request, res: Response): Promise<void> {
 
 async function getItem(req: Request, res: Response): Promise<void> {
   try {
-    const data = await tracksModel.findOne();
+    const { id } = req.params; // Extrae el id de los parámetros de la ruta
+
+    const data = await tracksModel.findOne({ _id: id }); // Busca el documento con ese id
+
+    if (!data) {
+      res.status(404).send({ error: 'ITEM_NOT_FOUND' }); // Si no encuentra el documento, envía un error 404
+      return;
+    }
+
     res.send({ data });
   } catch (e) {
-    res.status(500)
-    res.send({ error: 'ERROR_GET_ITEMS' })
+    console.error("Error fetching item:", e);
+    res.status(500).send({ error: 'ERROR_GET_ITEMS' });
   }
 }
+
 
 async function createItem(req: Request, res: Response): Promise<void> {
   try {
@@ -34,32 +43,27 @@ async function createItem(req: Request, res: Response): Promise<void> {
 
 async function updateItem(req: Request, res: Response): Promise<void> {
   try {
-    const { id } = req.params;
-    console.log("🚀 ~ file: hymnals.ts:35 ~ updateItem ~ req.body:", req.body); // Añadir registro de req.body
-    const body = matchedData(req, { locations: ['body'] }); 
-    console.log("🚀 ~ file: hymnals.ts:39 ~ updateItem ~ body:", body);
+    const { id } = req.params; 
+    const body = req.body.data;
 
-    if (Object.keys(body).length === 0) {
-      console.log("🚀 ~ file: hymnals.ts:41 ~ updateItem ~ El cuerpo de la solicitud está vacío");
-      res.status(400).send({ error: 'El cuerpo de la solicitud está vacío' });
+    if (!id) {
+      res.status(400).send({ error: 'ID_NOT_PROVIDED' });
       return;
     }
-
-    const data = await tracksModel.findByIdAndUpdate(
-      id, 
-      body, 
+    delete body._id;
+    const data = await tracksModel.findOneAndUpdate(
+      { _id: id },
+      { $set: body },
       { new: true }
     );
 
     if (!data) {
-      res.status(404).send({ error: 'Hymnal not found' });
+      res.status(404).send({ error: 'ITEM_NOT_FOUND' });
       return;
     }
-
     res.send({ data });
-    console.log("🚀 ~ file: hymnals.ts:53 ~ updateItem ~ data:", data);
   } catch (e) {
-    handleHttpError(res, "ERROR_UPDATE_ITEM");
+    res.status(500).send({ error: 'ERROR_UPDATE_ITEM' });
   }
 }
 
