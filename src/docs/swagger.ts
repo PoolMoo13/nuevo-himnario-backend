@@ -1,6 +1,6 @@
 import swaggerJsdoc, { OAS3Definition, OAS3Options } from "swagger-jsdoc";
 
-const Hymnns: OAS3Definition = {
+const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
   info: {
     title: "Documentacion de mi API Curso de Node REST",
@@ -37,7 +37,7 @@ const Hymnns: OAS3Definition = {
 };
 
 const options: OAS3Options = {
-  Hymnns,
+  swaggerDefinition,
   apis: ["./routes/*.js"],
 };
 
