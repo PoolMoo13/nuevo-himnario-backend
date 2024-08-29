@@ -71,12 +71,10 @@ async function deleteItem(req: Request<{ id: string }>, res: Response) {
   try {
     const { id } = req.params; 
     const deleteResponse = await tracksModel.deleteOne({ _id: id });
-    console.log("🚀 ~ file: hymnals.ts:51 ~ deleteItem ~ id:", id)
     const data = {
       deleted: deleteResponse.deletedCount
     };
     res.send({ data });
-    console.log("🚀 ~ file: hymnals.ts:55 ~ deleteItem ~ data:", data)
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_DELETE_ITEM");
