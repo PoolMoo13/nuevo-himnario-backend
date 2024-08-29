@@ -31,6 +31,27 @@ async function getItem(req: Request, res: Response): Promise<void> {
   }
 }
 
+async function searchByTitle(req: Request, res: Response): Promise<void> {
+  try {
+    const title = req.query.title as string;
+    console.log("🚀 ~ file: hymnals.ts:37 ~ getItemn ~ title:", title)
+
+    const data = await tracksModel.find({ title: { $regex: title, $options: "i" } }); 
+    console.log("🚀 ~ file: hymnals.ts:40 ~ getItemn ~ data:", data)
+    console.log("🚀 ~ file: hymnals.ts:40 ~ getItemn ~ title:", title)
+
+    if (!data) {
+      res.status(404).send({ error: 'ITEM_NOT_FOUND' }); 
+      return;
+    }
+
+    res.send({ data });
+  } catch (e) {
+    console.error("Error fetching item:", e);
+    res.status(500).send({ error: 'ERROR_GET_ITEMS' });
+  }
+}
+
 async function createItem(req: Request, res: Response): Promise<void> {
   try {
     const data = await tracksModel.create(req.body);
@@ -82,4 +103,4 @@ async function deleteItem(req: Request<{ id: string }>, res: Response) {
 };
 
 
-export { getItems, getItem, createItem, updateItem, deleteItem };
+export { getItems, createItem, updateItem, deleteItem, searchByTitle, getItem };
