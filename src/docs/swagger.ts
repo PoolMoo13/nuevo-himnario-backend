@@ -3,7 +3,8 @@ import swaggerJsdoc, { OAS3Definition, OAS3Options } from "swagger-jsdoc";
 const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
   info: {
-    title: "Documentacion del api de himnos jovenes",
+    title: "Documentacion del API de Himnos de jovenes",
+
     version: "1.0.1",
   },
   servers: [
