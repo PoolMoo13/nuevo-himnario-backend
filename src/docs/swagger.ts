@@ -4,6 +4,7 @@ const swaggerDefinition: OAS3Definition = {
   openapi: "3.0.0",
   info: {
     title: "Documentacion del API de Himnos de jovenes",
+
     version: "1.0.1",
   },
   servers: [
