@@ -45,6 +45,30 @@ async function searchByTitle(req: Request, res: Response): Promise<void> {
   }
 }
 
+async function searchBySlug(req: Request, res: Response): Promise<void> {
+  try {
+    const slug = req.query.slug as string;
+
+    if (!slug || typeof slug !== 'string') {
+      res.status(400).send({ error: 'INVALID_SLUG' });
+      return;
+    }
+    const data = await tracksModel.find({ slug: { $regex: slug, $options: "i" } });
+
+    if (!data || data.length === 0) {
+      res.status(404).send({ error: 'ITEM_NOT_FOUND' });
+      return;
+    }
+
+    res.send({ data });
+  } catch (e) {
+    console.error("Error fetching item:", e);
+    res.status(500).send({ error: 'ERROR_GET_ITEMS' });
+  }
+}
+
+
+
 async function createItem(req: Request, res: Response): Promise<void> {
   try {
     const data = await tracksModel.create(req.body);
@@ -96,4 +120,4 @@ async function deleteItem(req: Request<{ id: string }>, res: Response) {
 };
 
 
-export { getItems, createItem, updateItem, deleteItem, searchByTitle, getItem };
+export { getItems, createItem, updateItem, deleteItem, searchByTitle, getItem, searchBySlug };
