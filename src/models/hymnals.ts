@@ -30,7 +30,6 @@ const TracksScheme = new Schema<any>(
     },
     password: {
       type: String,
-      required: true,
     },
     passwordEdit: {
       type: String,
