@@ -53,7 +53,7 @@ async function searchBySlug(req: Request, res: Response): Promise<void> {
       res.status(400).send({ error: 'INVALID_SLUG' });
       return;
     }
-    const data = await tracksModel.find({ slug: { $regex: slug, $options: "i" } });
+    const data = await tracksModel.find({ slug: slug });
 
     if (!data || data.length === 0) {
       res.status(404).send({ error: 'ITEM_NOT_FOUND' });
